@@ -9,7 +9,7 @@ const Board = () => {
     const [status, setStatus] = useState('X turn')
     const [end, setEnd] = useState(false)
 
-//functions for individual squares
+
     const Square = (props) => {
         return (
           <button className="square" onClick={props.onClick}>
@@ -17,11 +17,13 @@ const Board = () => {
           </button>
         );
       }
-//triggers when clicked
+
     const handleClick = (i) => {
         let squares_ = squares
 
-        if (!squares_[i] && !end) {
+        //players' turn
+        if (!squares_[i] && !end)
+        {
             squares_[i] = XIsNext ? 'X' : 'O'
             setSquares(squares_)
             setXIsNext(!XIsNext)
@@ -29,21 +31,32 @@ const Board = () => {
             const occ = squares_.filter(Boolean).length
             const winner = calculateWinner(squares.slice())
 
-            if(winner) {
+
+            //displays which player won
+            if(winner)
+              {
                 setStatus(`${winner} is the winner`)
                 setEnd(true)
-            } else {
-                if(occ === 9) {
+              }
+            //displays if match draw
+            else
+            {
+                if(occ === 9)
+                {
                     setStatus(`Draw`)
                     setEnd(true)
-                } else {
+                }
+                //displays player turn
+                else
+                {
                     setStatus(`${XIsNext ? 'O' : 'X'} turn`)
                 }
             }
         }
 
     }
-//calculates the squares, determining the winner
+
+    //calculates the squares marked in order, determining the winner
     const calculateWinner = squares_ => {
         const lines = [
             [0, 1, 2],
@@ -74,16 +87,19 @@ const Board = () => {
     return (
         <div>
           <div className="status">{status}</div>
+          //row 1
           <div className="board-row">
             {renderSquare(0)}
             {renderSquare(1)}
             {renderSquare(2)}
           </div>
+          //row 2
           <div className="board-row">
             {renderSquare(3)}
             {renderSquare(4)}
             {renderSquare(5)}
           </div>
+          //row 3
           <div className="board-row">
             {renderSquare(6)}
             {renderSquare(7)}
