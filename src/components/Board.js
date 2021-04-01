@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-
 import './../index.css'
 
+//functions of board
 const Board = () => {
 
     const [squares, setSquares] = useState(Array(9).fill(null))
@@ -9,6 +9,7 @@ const Board = () => {
     const [status, setStatus] = useState('X turn')
     const [end, setEnd] = useState(false)
 
+//functions for individual squares
     const Square = (props) => {
         return (
           <button className="square" onClick={props.onClick}>
@@ -16,7 +17,7 @@ const Board = () => {
           </button>
         );
       }
-
+//triggers when clicked
     const handleClick = (i) => {
         let squares_ = squares
 
@@ -24,7 +25,7 @@ const Board = () => {
             squares_[i] = XIsNext ? 'X' : 'O'
             setSquares(squares_)
             setXIsNext(!XIsNext)
-            
+
             const occ = squares_.filter(Boolean).length
             const winner = calculateWinner(squares.slice())
 
@@ -40,9 +41,9 @@ const Board = () => {
                 }
             }
         }
-        
-    }
 
+    }
+//calculates the squares, determining the winner
     const calculateWinner = squares_ => {
         const lines = [
             [0, 1, 2],

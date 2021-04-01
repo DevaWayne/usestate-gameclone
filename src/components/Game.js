@@ -2,6 +2,7 @@ import React from 'react'
 import './../index.css'
 
 import Board from './Board'
+//invokes board function from board.js
 
 const Game = () => {
     return (
